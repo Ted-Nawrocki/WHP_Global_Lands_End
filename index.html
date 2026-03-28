@@ -9,9 +9,9 @@
   :root {
     --whp-black: #0a0a0a;
     --whp-white: #f8f6f1;
-    --whp-green: #9a7229;
-    --whp-green-light: #C8A951;
-    --whp-green-pale: #f5eacc;
+    --whp-gold: #9a7229;
+    --whp-gold-light: #C8A951;
+    --whp-gold-pale: #f5eacc;
     --whp-cream: #f8f6f1;
     --whp-mid: #6b6558;
     --whp-border: rgba(10,10,10,0.12);
@@ -21,852 +21,260 @@
     --font-mono: 'DM Mono', monospace;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: var(--font-body); background: var(--whp-cream); color: var(--whp-black); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-body);
-    background: var(--whp-cream);
-    color: var(--whp-black);
-    font-size: 16px;
-    line-height: 1.7;
-  }
-
-  /* NAV */
+  /* NAV — mobile first */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     background: var(--whp-black);
     border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 0 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
+    padding: 0 1.25rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
   }
+  .nav-logo { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--whp-gold-light); text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: none; }
 
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    color: var(--whp-green-light);
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--whp-green-light); }
-
-  /* HERO */
+  /* HERO — mobile first */
   .hero {
     background: var(--whp-black);
-    min-height: 88vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 5rem 3rem 5rem;
-    position: relative;
-    overflow: hidden;
+    min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 5rem 1.25rem 3rem;
+    position: relative; overflow: hidden;
   }
-
   .hero-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(200,169,81,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,169,81,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(200,169,81,0.05) 1px,transparent 1px), linear-gradient(90deg,rgba(200,169,81,0.05) 1px,transparent 1px);
+    background-size: 40px 40px;
   }
-
   .hero-accent {
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(154,114,41,0.2) 0%, transparent 70%);
+    position: absolute; top: -60px; right: -60px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle,rgba(154,114,41,0.2) 0%,transparent 70%);
     pointer-events: none;
   }
+  .hero-eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--whp-gold-light); margin-bottom: 1.25rem; line-height: 1.8; }
+  .hero-headline { font-family: var(--font-display); font-size: clamp(2.2rem, 8.5vw, 7rem); font-weight: 900; line-height: 1.05; color: var(--whp-white); margin-bottom: 1.5rem; }
+  .hero-headline em { font-style: italic; color: var(--whp-gold-light); }
+  .hero-sub { font-size: 1rem; font-weight: 300; color: rgba(248,246,241,0.6); line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .hero-author { display: flex; align-items: center; gap: 0.75rem; }
+  .hero-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--whp-gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--whp-gold-pale); flex-shrink: 0; border: 1px solid rgba(200,169,81,0.3); }
+  .hero-author-name { font-size: 13px; font-weight: 500; color: var(--whp-white); display: block; }
+  .hero-author-title { font-size: 10px; color: rgba(248,246,241,0.45); letter-spacing: 0.04em; display: block; }
+  .hero-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.15); }
+  .hero-date { font-family: var(--font-mono); font-size: 10px; color: rgba(248,246,241,0.35); letter-spacing: 0.08em; }
+  .scroll-cue { display: none; }
 
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--whp-green-light);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-headline {
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 7vw, 7rem);
-    font-weight: 900;
-    line-height: 1.0;
-    color: var(--whp-white);
-    max-width: 900px;
-    margin-bottom: 2rem;
-  }
-
-  .hero-headline em {
-    font-style: italic;
-    color: var(--whp-green-light);
-  }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    font-weight: 300;
-    color: rgba(248,246,241,0.6);
-    max-width: 560px;
-    line-height: 1.8;
-    margin-bottom: 3rem;
-  }
-
-  .hero-meta {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-author {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .hero-avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--whp-green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--whp-green-pale);
-    flex-shrink: 0;
-    border: 1px solid rgba(200,169,81,0.3);
-  }
-
-  .hero-author-text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero-author-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--whp-white);
-  }
-
-  .hero-author-title {
-    font-size: 11px;
-    color: rgba(248,246,241,0.45);
-    letter-spacing: 0.05em;
-  }
-
-  .hero-divider {
-    width: 1px;
-    height: 32px;
-    background: rgba(255,255,255,0.15);
-  }
-
-  .hero-date {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: rgba(248,246,241,0.35);
-    letter-spacing: 0.1em;
-  }
-
-  .scroll-cue {
-    position: absolute;
-    bottom: 2rem;
-    right: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.2);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-family: var(--font-mono);
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(200,169,81,0.7), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 6rem 3rem;
-  }
-
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--whp-green);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .section-eyebrow::after {
-    content: '';
-    flex: 1;
-    max-width: 60px;
-    height: 1px;
-    background: var(--whp-green);
-    opacity: 0.4;
-  }
-
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--whp-black);
-    margin-bottom: 1.5rem;
-  }
-
-  .section-title em {
-    font-style: italic;
-    color: var(--whp-green);
-  }
-
-  .lead {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: var(--whp-mid);
-    max-width: 680px;
-    line-height: 1.85;
-    margin-bottom: 3rem;
-  }
-
-  p {
-    color: #2c2c2c;
-    margin-bottom: 1.25rem;
-    max-width: 720px;
-  }
-
-  /* STAT STRIP */
-  .stat-strip {
-    background: var(--whp-black);
-    padding: 0;
-  }
-
-  .stat-strip-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-left: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .stat-item {
-    padding: 3rem 2.5rem;
-    border-right: 1px solid rgba(255,255,255,0.06);
-    border-bottom: none;
-    position: relative;
-  }
-
-  .stat-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--whp-green);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
+  /* STAT STRIP — mobile 2-col */
+  .stat-strip { background: var(--whp-black); padding: 0; }
+  .stat-strip-inner { display: grid; grid-template-columns: 1fr 1fr; border-left: 1px solid rgba(255,255,255,0.06); }
+  .stat-item { padding: 1.75rem 1.25rem; border-right: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
+  .stat-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--whp-gold); opacity: 0; transition: opacity 0.3s; }
   .stat-item:hover::before { opacity: 1; }
+  .stat-number { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--whp-white); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-number span { color: var(--whp-gold-light); }
+  .stat-label { font-size: 11px; color: rgba(248,246,241,0.4); letter-spacing: 0.04em; line-height: 1.5; }
 
-  .stat-number {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--whp-white);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
+  /* SECTIONS — mobile */
+  section { padding: 3.5rem 1.25rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--whp-gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-eyebrow::after { content: ''; flex: 1; max-width: 50px; height: 1px; background: var(--whp-gold); opacity: 0.4; }
+  .section-title { font-family: var(--font-display); font-size: clamp(1.7rem, 6vw, 3.5rem); font-weight: 700; line-height: 1.1; color: var(--whp-black); margin-bottom: 1.25rem; }
+  .section-title em { font-style: italic; color: var(--whp-gold); }
+  .lead { font-size: 1.05rem; font-weight: 300; color: var(--whp-mid); line-height: 1.85; margin-bottom: 2rem; }
+  p { color: #2c2c2c; margin-bottom: 1.25rem; max-width: 720px; }
+  .divider { border: none; height: 1px; background: var(--whp-border); }
 
-  .stat-number span {
-    color: var(--whp-green-light);
-  }
-
-  .stat-label {
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(248,246,241,0.4);
-    letter-spacing: 0.05em;
-    line-height: 1.5;
-  }
-
-  /* OVERVIEW SECTION */
+  /* OVERVIEW */
   #overview { background: var(--whp-cream); }
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+  .callout-box { background: var(--whp-black); border-radius: 4px; padding: 1.75rem; margin-top: 1.5rem; }
+  .callout-box p { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; color: var(--whp-white); line-height: 1.7; max-width: none; margin: 0; }
+  .callout-box span { color: var(--whp-gold-light); }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 1rem; }
+  .data-table tr { border-bottom: 1px solid var(--whp-border); }
+  .data-table td { padding: 10px 0; vertical-align: top; max-width: none; margin: 0; }
+  .data-table td:first-child { color: var(--whp-mid); font-size: 11px; width: 45%; padding-right: 0.75rem; line-height: 1.5; }
+  .data-table td:last-child { font-weight: 500; color: var(--whp-black); }
+  .mono-val { font-family: var(--font-mono); font-size: 12px; color: var(--whp-gold); }
 
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-    margin-top: 3rem;
-  }
-
-  .callout-box {
-    background: var(--whp-black);
-    border-radius: 4px;
-    padding: 2.5rem;
-    margin-top: 2rem;
-  }
-
-  .callout-box p {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 1.25rem;
-    color: var(--whp-white);
-    line-height: 1.7;
-    max-width: none;
-    margin: 0;
-  }
-
-  .callout-box span {
-    color: var(--whp-green-light);
-  }
-
-  /* IPCO/OPCO SECTION */
+  /* MODEL */
   #model { background: #111; }
-
   #model .section-title { color: var(--whp-white); }
   #model .lead { color: rgba(248,246,241,0.55); }
   #model p { color: rgba(248,246,241,0.7); }
-  #model .section-eyebrow { color: var(--whp-green-light); }
-  #model .section-eyebrow::after { background: var(--whp-green-light); }
-
-  .model-diagram {
-    margin: 4rem 0 2rem;
-    display: grid;
-    grid-template-columns: 1fr 80px 1fr;
-    gap: 0;
-    align-items: center;
-  }
-
-  .model-box {
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    padding: 2.5rem 2rem;
-  }
-
-  .model-box.ipco {
-    background: rgba(154,114,41,0.12);
-    border-color: rgba(200,169,81,0.35);
-  }
-
-  .model-box.opco {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.12);
-  }
-
-  .model-box-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .model-box.ipco .model-box-label { color: var(--whp-green-light); }
+  #model .section-eyebrow { color: var(--whp-gold-light); }
+  #model .section-eyebrow::after { background: var(--whp-gold-light); }
+  .model-diagram { margin: 2.5rem 0 1.5rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  .model-box { border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 1.5rem; }
+  .model-box.ipco { background: rgba(154,114,41,0.12); border-color: rgba(200,169,81,0.35); }
+  .model-box.opco { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); }
+  .model-box-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .model-box.ipco .model-box-label { color: var(--whp-gold-light); }
   .model-box.opco .model-box-label { color: rgba(248,246,241,0.4); }
-
-  .model-box-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--whp-white);
-    margin-bottom: 1rem;
-  }
-
-  .model-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .model-box ul li {
-    font-size: 13px;
-    color: rgba(248,246,241,0.55);
-    padding: 5px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    max-width: none;
-    margin: 0;
-  }
-
-  .model-box ul li::before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--whp-green-light);
-    flex-shrink: 0;
-    opacity: 0.7;
-  }
-
-  .model-arrow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 1rem 0;
-  }
-
-  .arrow-line {
-    width: 1px;
-    height: 30px;
-    background: rgba(200,169,81,0.4);
-  }
-
-  .arrow-label {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--whp-green-light);
-    text-align: center;
-    line-height: 1.5;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    white-space: nowrap;
-  }
-
-  .model-royalty-note {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--whp-green-light);
-    text-align: center;
-    margin-top: 1.5rem;
-    letter-spacing: 0.08em;
-    opacity: 0.7;
-  }
-
-  .model-steps {
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .model-step {
-    background: #111;
-    padding: 2rem 1.75rem;
-    position: relative;
-  }
-
-  .model-step-num {
-    font-family: var(--font-display);
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: rgba(200,169,81,0.1);
-    line-height: 1;
-    margin-bottom: 1rem;
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-  }
-
-  .model-step-title {
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--whp-white);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.02em;
-    max-width: none;
-  }
-
-  .model-step p {
-    font-size: 13px;
-    color: rgba(248,246,241,0.45);
-    line-height: 1.7;
-    max-width: none;
-    margin: 0;
-  }
+  .model-box-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--whp-white); margin-bottom: 0.75rem; }
+  .model-box ul { list-style: none; padding: 0; }
+  .model-box ul li { font-size: 13px; color: rgba(248,246,241,0.55); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 8px; max-width: none; margin: 0; }
+  .model-box ul li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--whp-gold-light); flex-shrink: 0; opacity: 0.7; }
+  .model-arrow { display: none; }
+  .model-royalty-note { font-family: var(--font-mono); font-size: 10px; color: var(--whp-gold-light); text-align: center; margin-top: 1rem; letter-spacing: 0.08em; opacity: 0.7; line-height: 1.6; padding: 0 1rem; }
+  .model-steps { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); }
+  .model-step { background: #111; padding: 1.5rem; position: relative; }
+  .model-step-num { font-family: var(--font-display); font-size: 2.75rem; font-weight: 900; color: rgba(200,169,81,0.1); line-height: 1; position: absolute; top: 1rem; right: 1rem; }
+  .model-step-title { font-size: 14px; font-weight: 600; color: var(--whp-white); margin-bottom: 0.6rem; letter-spacing: 0.02em; max-width: none; padding-right: 3rem; }
+  .model-step p { font-size: 13px; color: rgba(248,246,241,0.45); line-height: 1.7; max-width: none; margin: 0; }
 
   /* PORTFOLIO */
   #portfolio { background: var(--whp-cream); }
+  .portfolio-grid { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--whp-border); border: 1px solid var(--whp-border); }
+  .portfolio-card { background: var(--whp-cream); padding: 1.1rem; }
+  .portfolio-brand { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--whp-black); margin-bottom: 0.25rem; }
+  .portfolio-cat { font-size: 10px; color: var(--whp-mid); letter-spacing: 0.03em; margin-bottom: 0.65rem; line-height: 1.4; }
+  .portfolio-tag { display: inline-block; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 6px; border: 1px solid var(--whp-border-strong); border-radius: 2px; color: var(--whp-mid); }
+  .portfolio-featured { border-color: rgba(154,114,41,0.35); }
+  .portfolio-featured .portfolio-tag { background: rgba(154,114,41,0.08); border-color: rgba(154,114,41,0.3); color: var(--whp-gold); }
 
-  .portfolio-grid {
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--whp-border);
-    border: 1px solid var(--whp-border);
-  }
-
-  .portfolio-card {
-    background: var(--whp-cream);
-    padding: 1.75rem;
-    transition: background 0.25s;
-    cursor: default;
-  }
-
-  .portfolio-card:hover {
-    background: var(--whp-black);
-  }
-
-  .portfolio-card:hover .portfolio-brand { color: var(--whp-white); }
-  .portfolio-card:hover .portfolio-cat { color: rgba(248,246,241,0.4); }
-  .portfolio-card:hover .portfolio-tag { background: rgba(200,169,81,0.12); color: var(--whp-green-light); border-color: rgba(200,169,81,0.25); }
-
-  .portfolio-brand {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--whp-black);
-    margin-bottom: 0.4rem;
-    transition: color 0.25s;
-  }
-
-  .portfolio-cat {
-    font-size: 11px;
-    color: var(--whp-mid);
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-    transition: color 0.25s;
-  }
-
-  .portfolio-tag {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border: 1px solid var(--whp-border-strong);
-    border-radius: 2px;
-    color: var(--whp-mid);
-    transition: all 0.25s;
-  }
-
-  .portfolio-featured {
-    border-color: rgba(154,114,41,0.35);
-  }
-
-  .portfolio-featured .portfolio-tag {
-    background: rgba(154,114,41,0.08);
-    border-color: rgba(154,114,41,0.3);
-    color: var(--whp-green);
-  }
-
-  /* LANDS END DEAL */
+  /* DEAL */
   #deal { background: var(--whp-cream); border-top: 1px solid var(--whp-border); }
+  .deal-numbers { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--whp-border); border: 1px solid var(--whp-border); margin: 2rem 0; }
+  .deal-number-item { background: var(--whp-cream); padding: 1.5rem; }
+  .deal-number-val { font-family: var(--font-display); font-size: 2.25rem; font-weight: 900; color: var(--whp-gold); line-height: 1; margin-bottom: 0.4rem; }
+  .deal-number-label { font-size: 13px; color: var(--whp-mid); max-width: none; margin: 0; line-height: 1.6; }
+  .deal-timeline { margin: 2rem 0; position: relative; padding-left: 1.75rem; }
+  .deal-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--whp-border-strong); }
+  .timeline-item { position: relative; padding-bottom: 2rem; padding-left: 1.25rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -1.75rem; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--whp-gold); border: 2px solid var(--whp-cream); outline: 1px solid var(--whp-gold); }
+  .timeline-date { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--whp-gold); margin-bottom: 0.3rem; }
+  .timeline-title { font-weight: 600; font-size: 14px; color: var(--whp-black); margin-bottom: 0.4rem; }
+  .timeline-body { font-size: 13px; color: var(--whp-mid); max-width: none; line-height: 1.7; margin: 0; }
 
-  .deal-timeline {
-    margin: 3.5rem 0;
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .deal-timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: var(--whp-border-strong);
-  }
-
-  .timeline-item {
-    position: relative;
-    padding-bottom: 2.5rem;
-    padding-left: 1.5rem;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 7px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--whp-green);
-    border: 2px solid var(--whp-cream);
-    outline: 1px solid var(--whp-green);
-  }
-
-  .timeline-date {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--whp-green);
-    margin-bottom: 0.4rem;
-  }
-
-  .timeline-title {
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--whp-black);
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-body {
-    font-size: 14px;
-    color: var(--whp-mid);
-    max-width: 600px;
-    line-height: 1.7;
-    margin: 0;
-  }
-
-  .deal-numbers {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--whp-border);
-    border: 1px solid var(--whp-border);
-    margin: 3rem 0;
-  }
-
-  .deal-number-item {
-    background: var(--whp-cream);
-    padding: 2rem 2rem;
-  }
-
-  .deal-number-val {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--whp-green);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .deal-number-label {
-    font-size: 13px;
-    color: var(--whp-mid);
-    max-width: none;
-    margin: 0;
-  }
-
-  /* TENDER OFFER */
+  /* TENDER */
   #tender { background: #f0ede6; }
-
-  .tender-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-top: 3rem;
-  }
-
-  .tender-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    margin-top: 1rem;
-  }
-
-  .tender-table tr {
-    border-bottom: 1px solid var(--whp-border);
-  }
-
-  .tender-table td {
-    padding: 12px 0;
-    vertical-align: top;
-    max-width: none;
-    margin: 0;
-  }
-
-  .tender-table td:first-child {
-    color: var(--whp-mid);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    width: 45%;
-    padding-right: 1rem;
-  }
-
-  .tender-table td:last-child {
-    font-weight: 500;
-    color: var(--whp-black);
-  }
-
-  .mono-val {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--whp-green);
-  }
-
-  .process-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-  }
-
-  .process-list li {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--whp-border);
-    font-size: 14px;
-    color: #2c2c2c;
-    max-width: none;
-    margin: 0;
-  }
-
-  .process-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--whp-green);
-    flex-shrink: 0;
-    padding-top: 2px;
-    min-width: 20px;
-  }
+  .tender-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2rem; }
+  .section-sub-label { font-size: 11px; color: var(--whp-mid); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.75rem; }
+  .tender-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 0.5rem; }
+  .tender-table tr { border-bottom: 1px solid var(--whp-border); }
+  .tender-table td { padding: 10px 0; vertical-align: top; max-width: none; margin: 0; }
+  .tender-table td:first-child { color: var(--whp-mid); font-size: 11px; width: 42%; padding-right: 0.75rem; line-height: 1.5; }
+  .tender-table td:last-child { font-weight: 500; color: var(--whp-black); font-size: 13px; }
+  .process-list { list-style: none; padding: 0; margin-top: 0.75rem; }
+  .process-list li { display: flex; gap: 0.875rem; padding: 0.875rem 0; border-bottom: 1px solid var(--whp-border); font-size: 13px; color: #2c2c2c; max-width: none; margin: 0; line-height: 1.65; }
+  .process-num { font-family: var(--font-mono); font-size: 11px; color: var(--whp-gold); flex-shrink: 0; padding-top: 2px; min-width: 20px; }
 
   /* DISCLAIMER */
-  #disclaimer {
-    background: var(--whp-black);
-    padding: 4rem 3rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .disclaimer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .disclaimer-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--whp-green-light);
-    padding-top: 2px;
-  }
-
-  .disclaimer-text {
-    font-size: 12px;
-    color: rgba(248,246,241,0.35);
-    line-height: 1.8;
-    max-width: none;
-    margin: 0;
-  }
-
-  .disclaimer-text + .disclaimer-text { margin-top: 0.75rem; }
+  #disclaimer { background: var(--whp-black); padding: 3rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .disclaimer-inner { max-width: 1100px; margin: 0 auto; }
+  .disclaimer-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--whp-gold-light); margin-bottom: 1.25rem; display: block; }
+  .disclaimer-text { font-size: 12px; color: rgba(248,246,241,0.35); line-height: 1.8; max-width: none; margin: 0 0 0.75rem; }
 
   /* FOOTER */
-  footer {
-    background: var(--whp-black);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 2rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  footer { background: var(--whp-black); border-top: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-brand { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: rgba(248,246,241,0.25); text-transform: uppercase; }
+  .footer-link { font-size: 12px; color: rgba(248,246,241,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-link:hover { color: var(--whp-gold-light); }
+
+  /* ── TABLET 640px+ ── */
+  @media (min-width: 640px) {
+    nav { padding: 0 2rem; height: 60px; }
+    .nav-logo { font-size: 11px; }
+    .hero { padding: 5rem 2rem 4rem; }
+    section { padding: 5rem 2rem; }
+    .stat-strip-inner { grid-template-columns: repeat(4, 1fr); }
+    .stat-item { border-bottom: none; padding: 2.25rem 1.5rem; }
+    .stat-number { font-size: 2.5rem; }
+    .deal-numbers { grid-template-columns: repeat(3, 1fr); }
+    .model-steps { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+    .portfolio-card { padding: 1.5rem; }
+    .portfolio-brand { font-size: 1rem; }
+    #disclaimer { padding: 3.5rem 2rem; }
+    footer { padding: 1.75rem 2rem; flex-direction: row; align-items: center; justify-content: space-between; }
   }
 
-  .footer-brand {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: rgba(248,246,241,0.25);
-    text-transform: uppercase;
-  }
+  /* ── DESKTOP 900px+ ── */
+  @media (min-width: 900px) {
+    nav { padding: 0 3rem; height: 64px; }
+    .nav-logo { font-size: 12px; letter-spacing: 0.18em; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--whp-gold-light); }
 
-  .footer-link {
-    font-size: 12px;
-    color: rgba(248,246,241,0.35);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-  }
+    .hero { min-height: 88vh; padding: 5rem 3rem 5rem; }
+    .hero-grid-bg { background-size: 60px 60px; }
+    .hero-accent { width: 500px; height: 500px; top: -80px; right: -80px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; }
+    .hero-sub { font-size: 1.15rem; max-width: 560px; }
+    .hero-avatar { width: 42px; height: 42px; font-size: 13px; }
+    .hero-author-name { font-size: 14px; }
+    .hero-author-title { font-size: 11px; }
+    .hero-date { font-size: 11px; letter-spacing: 0.1em; }
 
-  .footer-link:hover { color: var(--whp-green-light); }
+    .scroll-cue { display: flex; position: absolute; bottom: 2rem; right: 3rem; flex-direction: column; align-items: center; gap: 6px; color: rgba(255,255,255,0.2); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-mono); }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom,rgba(200,169,81,0.7),transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
-  /* SECTION DIVIDERS */
-  .divider {
-    border: none;
-    height: 1px;
-    background: var(--whp-border);
-  }
+    section { padding: 6rem 3rem; }
+    .lead { font-size: 1.2rem; max-width: 680px; margin-bottom: 3rem; }
 
-  /* INLINE HIGHLIGHT */
-  .hl {
-    color: var(--whp-green);
-    font-weight: 500;
-  }
+    .stat-strip-inner { max-width: 1100px; margin: 0 auto; }
+    .stat-item { padding: 3rem 2.5rem; }
+    .stat-number { font-size: 3rem; }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 0 1.5rem; }
-    nav .nav-links { display: none; }
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 4rem 1.5rem 3rem; }
-    .hero-headline { font-size: 3rem; }
-    .stat-strip-inner { grid-template-columns: repeat(2, 1fr); }
-    .two-col { grid-template-columns: 1fr; gap: 2rem; }
-    .model-diagram { grid-template-columns: 1fr; }
-    .model-arrow { display: none; }
-    .model-steps { grid-template-columns: 1fr; }
-    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-    .deal-numbers { grid-template-columns: 1fr; }
-    .tender-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .disclaimer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-    footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    .two-col { grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; }
+    .callout-box { padding: 2.5rem; }
+    .callout-box p { font-size: 1.25rem; }
+    .data-table { font-size: 14px; }
+    .data-table td:first-child { font-size: 12px; }
+    .mono-val { font-size: 13px; }
+
+    .model-diagram { grid-template-columns: 1fr 80px 1fr; gap: 0; margin: 4rem 0 2rem; }
+    .model-arrow { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 1rem 0; }
+    .arrow-line { width: 1px; height: 30px; background: rgba(200,169,81,0.4); }
+    .arrow-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--whp-gold-light); text-align: center; line-height: 1.5; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; }
+    .model-box { padding: 2.5rem 2rem; }
+    .model-box-label { font-size: 10px; letter-spacing: 0.2em; }
+    .model-box-title { font-size: 1.5rem; }
+    .model-royalty-note { font-size: 11px; margin-top: 1.5rem; }
+    .model-steps { grid-template-columns: repeat(3, 1fr); margin-top: 4rem; }
+    .model-step { padding: 2rem 1.75rem; }
+    .model-step-num { font-size: 3.5rem; top: 1.5rem; right: 1.5rem; }
+
+    .portfolio-grid { grid-template-columns: repeat(4, 1fr); margin-top: 3rem; }
+    .portfolio-card { padding: 1.75rem; cursor: default; transition: background 0.25s; }
+    .portfolio-card:hover { background: var(--whp-black); }
+    .portfolio-card:hover .portfolio-brand { color: var(--whp-white); }
+    .portfolio-card:hover .portfolio-cat { color: rgba(248,246,241,0.4); }
+    .portfolio-card:hover .portfolio-tag { background: rgba(200,169,81,0.12); color: var(--whp-gold-light); border-color: rgba(200,169,81,0.25); }
+    .portfolio-brand { font-size: 1.1rem; transition: color 0.25s; }
+    .portfolio-cat { font-size: 11px; transition: color 0.25s; }
+    .portfolio-tag { transition: all 0.25s; }
+
+    .deal-numbers { margin: 3rem 0; }
+    .deal-number-item { padding: 2rem; }
+    .deal-number-val { font-size: 2.5rem; }
+    .deal-timeline { margin: 3.5rem 0; }
+
+    .tender-grid { grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+    .tender-table { font-size: 14px; }
+    .tender-table td:first-child { font-size: 12px; }
+    .process-list li { font-size: 14px; }
+
+    #disclaimer { padding: 4rem 3rem; }
+    .disclaimer-inner { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; align-items: start; }
+    .disclaimer-label { margin-bottom: 0; }
+    footer { padding: 2rem 3rem; }
+    .footer-brand { font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">WHP Global / Analysis</a>
   <ul class="nav-links">
@@ -878,7 +286,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-accent"></div>
@@ -888,7 +295,7 @@
   <div class="hero-meta">
     <div class="hero-author">
       <div class="hero-avatar">TN</div>
-      <div class="hero-author-text">
+      <div>
         <span class="hero-author-name">Ted Nawrocki</span>
         <span class="hero-author-title">Senior Manager, Financial Services</span>
       </div>
@@ -902,7 +309,6 @@
   </div>
 </div>
 
-<!-- STAT STRIP -->
 <div class="stat-strip">
   <div class="stat-strip-inner">
     <div class="stat-item">
@@ -924,63 +330,32 @@
   </div>
 </div>
 
-<!-- OVERVIEW -->
 <section id="overview">
   <div class="section-inner">
     <p class="section-eyebrow">01 &nbsp; Overview</p>
     <h2 class="section-title">One company.<br><em>Thirteen brands.</em><br>Zero factories.</h2>
-    <p class="lead">WHP Global is a brand management platform founded on a single insight: the name on the label is often worth more than everything required to put a product on a shelf.</p>
-
+    <p class="lead">WHP Global is a brand management platform built on one thesis: the trademark on the label commands more enterprise value than the operational infrastructure required to manufacture and distribute the product beneath it.</p>
     <div class="two-col">
       <div>
-        <p>Founded in 2019 by Yehuda Shmidman, WHP Global launched with $200 million in equity from Oaktree Capital Management and a first acquisition in Anne Klein. In under seven years, the firm has assembled a portfolio spanning toy retail giants, premium fashion houses, athletic brands, and heritage American menswear.</p>
-        <p>The core premise is straightforward. Established consumer brands carry decades of recognition, customer loyalty, and cultural equity. Operational companies — retailers, manufacturers, distributors — are frequently unable to monetize that value efficiently, burdened by store leases, inventory cycles, and overhead. WHP separates the two.</p>
-        <p>The firm acquires the intellectual property: the trademark, the logo, the design heritage, the licensing agreements. It then deploys that IP into a global network of operating partners who manufacture, distribute, and retail the branded goods in exchange for royalty payments. WHP owns the name. Operators own the problem of getting products to customers.</p>
-
+        <p>Founded in 2019 by Yehuda Shmidman, WHP Global launched with $200 million in equity from Oaktree Capital Management and an inaugural acquisition of Anne Klein. In under seven years, the firm has assembled a portfolio spanning toy retail, premium fashion, athletic footwear, and heritage American menswear.</p>
+        <p>The investment thesis is grounded in a structural separation of brand IP from operating risk. Established consumer brands carry decades of consumer recognition, distribution relationships, and cultural equity. Operating companies, burdened by lease obligations, inventory exposure, and supply chain overhead, are frequently unable to extract full value from that IP. WHP acquires the IP and licenses it back to operators who bear the execution risk.</p>
+        <p>The firm acquires the intellectual property: the trademark, the logo, the design heritage, and the existing licensing agreements. It then deploys that IP through a global network of operating partners who manufacture, distribute, and retail the branded goods in exchange for royalty payments. WHP holds the IP. Operators carry the operating liability.</p>
         <div class="callout-box">
           <p>"Brand management platforms are designed to acquire strong global brands and unlock value post-acquisition through the business model of <span>licensing</span>. They seek to generate value creation from the IP by adding licensees in new geographies and categories globally."</p>
         </div>
       </div>
-
       <div>
-        <p style="font-size:13px; color: var(--whp-mid); letter-spacing:0.08em; text-transform:uppercase; font-weight:500; margin-bottom:1rem;">Key Attributes</p>
-        <table class="tender-table">
-          <tr>
-            <td>Business type</td>
-            <td>Brand IP acquisition &amp; licensing</td>
-          </tr>
-          <tr>
-            <td>Founded</td>
-            <td>2019, New York City</td>
-          </tr>
-          <tr>
-            <td>Founder / CEO</td>
-            <td>Yehuda Shmidman</td>
-          </tr>
-          <tr>
-            <td>Initial backers</td>
-            <td>Oaktree Capital Management</td>
-          </tr>
-          <tr>
-            <td>Portfolio brands</td>
-            <td>13+ consumer brands</td>
-          </tr>
-          <tr>
-            <td>Global retail sales</td>
-            <td class="mono-val">$8B+</td>
-          </tr>
-          <tr>
-            <td>Countries active</td>
-            <td>50+</td>
-          </tr>
-          <tr>
-            <td>Licensee partners</td>
-            <td>150+</td>
-          </tr>
-          <tr>
-            <td>Comparable firms</td>
-            <td>Authentic Brands Group, Marquee Brands</td>
-          </tr>
+        <p style="font-size:12px;color:var(--whp-mid);letter-spacing:0.08em;text-transform:uppercase;font-weight:500;margin-bottom:1rem;">Key Attributes</p>
+        <table class="data-table">
+          <tr><td>Business type</td><td>Brand IP acquisition &amp; licensing</td></tr>
+          <tr><td>Founded</td><td>2019, New York City</td></tr>
+          <tr><td>Founder / CEO</td><td>Yehuda Shmidman</td></tr>
+          <tr><td>Initial backers</td><td>Oaktree Capital Management</td></tr>
+          <tr><td>Portfolio brands</td><td>13+ consumer brands</td></tr>
+          <tr><td>Global retail sales</td><td class="mono-val">$8B+</td></tr>
+          <tr><td>Countries active</td><td>50+</td></tr>
+          <tr><td>Licensee partners</td><td>150+</td></tr>
+          <tr><td>Comparable firms</td><td>Authentic Brands Group, Marquee Brands</td></tr>
         </table>
       </div>
     </div>
@@ -989,13 +364,11 @@
 
 <hr class="divider">
 
-<!-- MODEL -->
 <section id="model">
   <div class="section-inner">
-    <p class="section-eyebrow" style="color: var(--whp-green-light);">02 &nbsp; The Model</p>
-    <h2 class="section-title" style="color: var(--whp-white);">The IPCo / OpCo<br><em>architecture.</em></h2>
-    <p class="lead" style="color: rgba(248,246,241,0.5);">The industry term for what WHP does is the IPCo / OpCo split. It is not a new concept, but WHP and firms like Authentic Brands Group have scaled it into a systematic acquisition strategy.</p>
-
+    <p class="section-eyebrow" style="color:var(--whp-gold-light);">02 &nbsp; The Model</p>
+    <h2 class="section-title" style="color:var(--whp-white);">The IPCo / OpCo<br><em>architecture.</em></h2>
+    <p class="lead" style="color:rgba(248,246,241,0.5);">The IPCo / OpCo structure is not new to M&A practice, but WHP and its principal competitor, Authentic Brands Group, have institutionalized it into a repeatable acquisition framework operating at scale across multiple brand verticals.</p>
     <div class="model-diagram">
       <div class="model-box ipco">
         <div class="model-box-label">IPCo — Intellectual Property Company</div>
@@ -1006,10 +379,9 @@
           <li>Collects guaranteed minimum royalties</li>
           <li>Deploys IP into new categories and geographies</li>
           <li>Provides marketing direction and brand governance</li>
-          <li>Asset-light — no inventory, no stores, no factories</li>
+          <li>Asset-light structure: no inventory, no stores, no factories</li>
         </ul>
       </div>
-
       <div class="model-arrow">
         <div class="arrow-line"></div>
         <div class="arrow-label">Royalties &amp; License fees</div>
@@ -1017,7 +389,6 @@
         <div class="arrow-label">Brand rights &amp; governance</div>
         <div class="arrow-line"></div>
       </div>
-
       <div class="model-box opco">
         <div class="model-box-label">OpCo — Operating Company</div>
         <div class="model-box-title">Licensed Operators</div>
@@ -1031,268 +402,113 @@
         </ul>
       </div>
     </div>
-
-    <p class="model-royalty-note">↑ The IPCo receives income regardless of whether individual operators succeed. Risk is structurally insulated.</p>
-
+    <p class="model-royalty-note">The IPCo receives contractually guaranteed income irrespective of individual operator performance. Operating risk is structurally segregated from IP ownership.</p>
     <div class="model-steps">
-      <div class="model-step">
-        <div class="model-step-num">01</div>
-        <div class="model-step-title">Identify</div>
-        <p>WHP targets established consumer brands with strong heritage and loyal customer bases that are underperforming due to operational or financial burden — not because the brand itself has lost relevance.</p>
-      </div>
-      <div class="model-step">
-        <div class="model-step-num">02</div>
-        <div class="model-step-title">Acquire the IP</div>
-        <p>WHP purchases the intellectual property — the trademark, design rights, and existing licensing agreements. It does not acquire stores, inventory, employees, or supply chain obligations.</p>
-      </div>
-      <div class="model-step">
-        <div class="model-step-num">03</div>
-        <div class="model-step-title">License to operators</div>
-        <p>WHP grants operating licenses to category-specific partners — best-in-class manufacturers, distributors, and retailers — who pay royalties in exchange for the right to produce and sell under the brand name.</p>
-      </div>
-      <div class="model-step">
-        <div class="model-step-num">04</div>
-        <div class="model-step-title">Expand globally</div>
-        <p>New licensees are added across geographies and product categories. A brand acquired for its US retail presence can be extended into Japan, India, or the Middle East without WHP taking on local operational risk.</p>
-      </div>
-      <div class="model-step">
-        <div class="model-step-num">05</div>
-        <div class="model-step-title">Collect royalties</div>
-        <p>Revenue flows back to WHP as guaranteed minimum royalties from each licensee, plus a share of excess revenue above the floor. The result is a largely predictable, recurring income stream tied to brand performance, not operations.</p>
-      </div>
-      <div class="model-step">
-        <div class="model-step-num">06</div>
-        <div class="model-step-title">Repeat at scale</div>
-        <p>WHP's shared platform — legal, marketing, licensing infrastructure, ecommerce via WHP+ — reduces the marginal cost of adding each new brand. Scale is the structural advantage; each acquisition leverages the same network of 150+ existing licensee partners.</p>
-      </div>
+      <div class="model-step"><div class="model-step-num">01</div><div class="model-step-title">Identify</div><p>WHP targets established consumer brands with recognized consumer equity and distribution scale that are underperforming due to operational or capital structure constraints, not erosion of brand relevance.</p></div>
+      <div class="model-step"><div class="model-step-num">02</div><div class="model-step-title">Acquire the IP</div><p>WHP acquires the intellectual property: the trademark, design rights, and existing licensing agreements. The transaction excludes stores, inventory, employees, and supply chain obligations. WHP assumes no operational liability.</p></div>
+      <div class="model-step"><div class="model-step-num">03</div><div class="model-step-title">License to operators</div><p>WHP issues operating licenses to category-specific partners, typically best-in-class manufacturers, distributors, or retailers, who pay contractual royalties in exchange for the right to produce and sell under the licensed brand.</p></div>
+      <div class="model-step"><div class="model-step-num">04</div><div class="model-step-title">Expand globally</div><p>Additional licensees are contracted across geographies and product categories, extending brand reach without WHP assuming local operational or regulatory exposure in each new market.</p></div>
+      <div class="model-step"><div class="model-step-num">05</div><div class="model-step-title">Collect royalties</div><p>Revenue accrues to WHP as guaranteed minimum royalties from each licensee, plus a participation in revenues above the contractual floor. The income stream is recurring and tied to brand performance rather than direct operations.</p></div>
+      <div class="model-step"><div class="model-step-num">06</div><div class="model-step-title">Scale the platform</div><p>WHP's shared infrastructure, comprising legal, marketing, licensing administration, and its proprietary ecommerce platform WHP+, reduces the incremental cost of each new brand addition. Each acquisition is supported by an existing network of over 150 licensee partners across more than 50 countries.</p></div>
     </div>
-
   </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="section-inner">
     <p class="section-eyebrow">03 &nbsp; Portfolio</p>
     <h2 class="section-title">Thirteen brands.<br><em>One platform.</em></h2>
-    <p class="lead">WHP's portfolio spans toy retail, premium fashion, athletic wear, and American heritage menswear — connected not by category, but by the licensing infrastructure running beneath each brand.</p>
-
+    <p class="lead">WHP's portfolio spans toy retail, premium fashion, athletic footwear, and heritage American menswear. The brands are not connected by category. They are connected by the licensing infrastructure and shared platform operating beneath each one.</p>
     <div class="portfolio-grid">
-      <div class="portfolio-card portfolio-featured">
-        <div class="portfolio-brand">Lands' End</div>
-        <div class="portfolio-cat">Heritage Apparel &amp; DTC</div>
-        <span class="portfolio-tag">2026 acquisition</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Toys"R"Us</div>
-        <div class="portfolio-cat">Global Toy Retail</div>
-        <span class="portfolio-tag">32+ countries</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Babies"R"Us</div>
-        <div class="portfolio-cat">Baby &amp; Infant Retail</div>
-        <span class="portfolio-tag">20+ countries</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Vera Wang</div>
-        <div class="portfolio-cat">Premium Fashion &amp; Bridal</div>
-        <span class="portfolio-tag">Acquired 2024</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Rag &amp; Bone</div>
-        <div class="portfolio-cat">Fashion Apparel &amp; Accessories</div>
-        <span class="portfolio-tag">w/ Guess?</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Express</div>
-        <div class="portfolio-cat">Fashion Apparel &amp; Accessories</div>
-        <span class="portfolio-tag">Post-bankruptcy</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Bonobos</div>
-        <div class="portfolio-cat">Men's DTC Apparel</div>
-        <span class="portfolio-tag">60 Guideshops</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">G-Star RAW</div>
-        <div class="portfolio-cat">Premium Denim</div>
-        <span class="portfolio-tag">Est. Amsterdam 1989</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Joe's Jeans</div>
-        <div class="portfolio-cat">Women's &amp; Men's Denim</div>
-        <span class="portfolio-tag">Est. 2001</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Anne Klein</div>
-        <div class="portfolio-cat">Women's Fashion &amp; Accessories</div>
-        <span class="portfolio-tag">First acquisition</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Joseph Abboud</div>
-        <div class="portfolio-cat">Men's Fashion &amp; Accessories</div>
-        <span class="portfolio-tag">Made in USA</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Isaac Mizrahi</div>
-        <div class="portfolio-cat">Women's Fashion</div>
-        <span class="portfolio-tag">$1B+ retail sales</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Lotto</div>
-        <div class="portfolio-cat">Athletic Footwear &amp; Apparel</div>
-        <span class="portfolio-tag">Italy · Est. 1973</span>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-brand">Warners</div>
-        <div class="portfolio-cat">Intimate Apparel</div>
-        <span class="portfolio-tag">Century-old brand</span>
-      </div>
+      <div class="portfolio-card portfolio-featured"><div class="portfolio-brand">Lands' End</div><div class="portfolio-cat">Heritage Apparel &amp; DTC</div><span class="portfolio-tag">2026 acquisition</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Toys"R"Us</div><div class="portfolio-cat">Global Toy Retail</div><span class="portfolio-tag">32+ countries</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Babies"R"Us</div><div class="portfolio-cat">Baby &amp; Infant Retail</div><span class="portfolio-tag">20+ countries</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Vera Wang</div><div class="portfolio-cat">Premium Fashion &amp; Bridal</div><span class="portfolio-tag">Acquired 2024</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Rag &amp; Bone</div><div class="portfolio-cat">Fashion Apparel &amp; Accessories</div><span class="portfolio-tag">w/ Guess?</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Express</div><div class="portfolio-cat">Fashion Apparel &amp; Accessories</div><span class="portfolio-tag">Post-bankruptcy</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Bonobos</div><div class="portfolio-cat">Men's DTC Apparel</div><span class="portfolio-tag">60 Guideshops</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">G-Star RAW</div><div class="portfolio-cat">Premium Denim</div><span class="portfolio-tag">Est. Amsterdam 1989</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Joe's Jeans</div><div class="portfolio-cat">Women's &amp; Men's Denim</div><span class="portfolio-tag">Est. 2001</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Anne Klein</div><div class="portfolio-cat">Women's Fashion &amp; Accessories</div><span class="portfolio-tag">First acquisition</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Joseph Abboud</div><div class="portfolio-cat">Men's Fashion &amp; Accessories</div><span class="portfolio-tag">Made in USA</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Isaac Mizrahi</div><div class="portfolio-cat">Women's Fashion</div><span class="portfolio-tag">$1B+ retail sales</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Lotto</div><div class="portfolio-cat">Athletic Footwear &amp; Apparel</div><span class="portfolio-tag">Italy · Est. 1973</span></div>
+      <div class="portfolio-card"><div class="portfolio-brand">Warners</div><div class="portfolio-cat">Intimate Apparel</div><span class="portfolio-tag">Century-old brand</span></div>
     </div>
   </div>
 </section>
 
-<!-- DEAL -->
 <section id="deal">
   <div class="section-inner">
     <p class="section-eyebrow">04 &nbsp; The Lands' End Transaction</p>
     <h2 class="section-title">$300 million for a name<br><em>you've known since 1963.</em></h2>
-    <p class="lead">The Lands' End deal, announced January 26, 2026, is a textbook execution of the WHP model applied to a solvent, functioning brand — not a distressed one. That distinction matters.</p>
-
+    <p class="lead">The Lands' End transaction, announced January 26, 2026, represents the WHP model applied to a solvent, operationally functioning brand rather than a distressed one. That distinction is central to understanding the structure.</p>
     <div class="deal-numbers">
-      <div class="deal-number-item">
-        <div class="deal-number-val">$300M</div>
-        <div class="deal-number-label">Cash paid by WHP Global for a 50% stake in the Lands' End brand IP joint venture</div>
-      </div>
-      <div class="deal-number-item">
-        <div class="deal-number-val">$50M</div>
-        <div class="deal-number-label">Guaranteed minimum annual royalty paid by Lands' End to the JV in year one, with customary provisions thereafter</div>
-      </div>
-      <div class="deal-number-item">
-        <div class="deal-number-val">$234M</div>
-        <div class="deal-number-label">Outstanding term loan repaid by Lands' End using the JV proceeds, retiring the debt in full</div>
-      </div>
+      <div class="deal-number-item"><div class="deal-number-val">$300M</div><div class="deal-number-label">Cash paid by WHP Global for a 50% stake in the Lands' End brand IP joint venture</div></div>
+      <div class="deal-number-item"><div class="deal-number-val">$50M</div><div class="deal-number-label">Guaranteed minimum annual royalty paid by Lands' End to the JV in year one, with customary provisions thereafter</div></div>
+      <div class="deal-number-item"><div class="deal-number-val">$234M</div><div class="deal-number-label">Outstanding term loan repaid by Lands' End using the JV proceeds, retiring the debt in full</div></div>
     </div>
-
     <div class="two-col">
       <div>
-        <p><strong>What Lands' End did.</strong> Lands' End contributed all of its intellectual property and related assets — the brand name, trademarks, and existing licensing agreements — into a newly formed joint venture. WHP paid $300 million in cash for a 50% stake in that JV. Lands' End retained its operational business entirely: direct-to-consumer ecommerce, B2B outfitter contracts, and retail operations continue under Lands' End management.</p>
-
-        <p><strong>The royalty arrangement.</strong> Lands' End now licenses its own brand name from the JV it half-owns. The guaranteed minimum royalty starts at $50 million in year one. Any excess cash generated by the JV above a minimum cash balance is distributed to both WHP and Lands' End quarterly, pro rata to their 50/50 ownership. Lands' End is simultaneously a payer into the JV and a recipient of distributions from it.</p>
-
-        <p><strong>Why this is a different deal from a bankruptcy acquisition.</strong> Lands' End is not distressed. It entered this transaction with a functioning business, real ecommerce revenue, and a durable B2B outfitter franchise. The motivation was balance sheet optimization — converting a static IP asset into $300 million in liquidity to retire $234 million in term loan debt — and participating in the global licensing upside WHP's network can generate from the Lands' End brand in categories and geographies Lands' End itself never pursued.</p>
+        <p><strong>Structure of the IP contribution.</strong> Lands' End contributed all of its intellectual property and related assets, comprising the brand name, trademarks, and existing licensing agreements, into a newly formed joint venture. WHP paid $300 million in cash for a 50% interest in that JV. Lands' End retained its operating business in its entirety: direct-to-consumer ecommerce, B2B outfitter contracts, and retail operations continue under Lands' End management.</p>
+        <p><strong>The licensing and royalty arrangement.</strong> Lands' End licenses its own brand name from the JV it co-owns. The guaranteed minimum annual royalty is $50 million in year one, with customary escalation provisions thereafter. Excess cash generated by the JV above a minimum cash reserve is distributed to WHP and Lands' End on a quarterly basis, pro rata to their respective 50% ownership interests. Lands' End is both a royalty obligor to the JV and a distribution recipient from it.</p>
+        <p><strong>How this transaction differs from a distressed acquisition.</strong> Lands' End entered this transaction with a functioning business, established ecommerce revenue, and a B2B outfitter franchise. The commercial rationale was balance sheet restructuring: converting a static IP asset into $300 million in gross proceeds to retire $234 million in term loan debt, while retaining a 50% participation in the global licensing value WHP's network can generate from the Lands' End brand in categories and geographies the company had not previously pursued.</p>
       </div>
-
       <div>
         <div class="deal-timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">January 26, 2026</div>
-            <div class="timeline-title">Transaction announced</div>
-            <p class="timeline-body">Lands' End and WHP Global jointly announce the JV structure and the planned $100 million tender offer. Financial and legal advisors named.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">February 26, 2026</div>
-            <div class="timeline-title">Tender offer commences</div>
-            <p class="timeline-body">LEWHP, LLC — a wholly owned indirect subsidiary of WHP Global — formally launches the offer to purchase up to 2,222,222 shares at $45.00 per share in cash.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">March 26, 2026</div>
-            <div class="timeline-title">Tender offer expires</div>
-            <p class="timeline-body">Initial expiration at 11:59 p.m. New York City time, subject to extension. Conditioned on closing of the IP transaction. WHP expected to own ~7% of shares outstanding post-closing.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">H1 2026 (Expected)</div>
-            <div class="timeline-title">Full transaction close</div>
-            <p class="timeline-body">Both the IP joint venture and tender offer expected to close in the first half of 2026, subject to regulatory approvals and customary closing conditions.</p>
-          </div>
+          <div class="timeline-item"><div class="timeline-date">January 26, 2026</div><div class="timeline-title">Transaction announced</div><p class="timeline-body">Lands' End and WHP Global jointly announce the JV structure and the planned $100 million tender offer. Financial and legal advisors named.</p></div>
+          <div class="timeline-item"><div class="timeline-date">February 26, 2026</div><div class="timeline-title">Tender offer commences</div><p class="timeline-body">LEWHP, LLC, a wholly owned indirect subsidiary of WHP Global, formally launches the offer to purchase up to 2,222,222 shares at $45.00 per share in cash. Schedule TO filed with the SEC.</p></div>
+          <div class="timeline-item"><div class="timeline-date">March 18, 2026</div><div class="timeline-title">Tender offer extended</div><p class="timeline-body">WHP files an amended Schedule TO extending the expiration to March 31, 2026. The amendment also revises the MIPA Compliance Condition and clarifies acceptance timing mechanics.</p></div>
+          <div class="timeline-item"><div class="timeline-date">H1 2026 (Expected)</div><div class="timeline-title">Full transaction close</div><p class="timeline-body">The IP joint venture and tender offer are expected to close concurrently in the first half of 2026, subject to regulatory approvals and satisfaction of all conditions precedent.</p></div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- TENDER OFFER MECHANICS -->
 <section id="tender">
   <div class="section-inner">
     <p class="section-eyebrow">05 &nbsp; Tender Offer Mechanics</p>
     <h2 class="section-title">How the offer<br><em>actually works.</em></h2>
-    <p class="lead">The tender offer is the secondary component of the transaction, providing WHP with a meaningful equity stake in Lands' End while returning cash to selling shareholders at a premium.</p>
-
+    <p class="lead">The tender offer is the second component of the transaction. It provides WHP with an equity position in Lands' End concurrent with the IP joint venture closing, while delivering a cash premium to tendering shareholders.</p>
     <div class="tender-grid">
       <div>
-        <p style="font-size:12px; color: var(--whp-mid); letter-spacing:0.1em; text-transform:uppercase; font-weight:500; margin-bottom:0.75rem;">Offer Terms</p>
+        <p class="section-sub-label">Offer Terms</p>
         <table class="tender-table">
-          <tr>
-            <td>Purchaser entity</td>
-            <td>LEWHP, LLC (indirect subsidiary of WH Topco, L.P., d/b/a WHP Global)</td>
-          </tr>
-          <tr>
-            <td>Target company</td>
-            <td>Lands' End, Inc. (NASDAQ: LE)</td>
-          </tr>
-          <tr>
-            <td>Offer price</td>
-            <td class="mono-val">$45.00 per share, cash</td>
-          </tr>
-          <tr>
-            <td>Maximum shares</td>
-            <td class="mono-val">2,222,222 shares</td>
-          </tr>
-          <tr>
-            <td>Maximum aggregate</td>
-            <td class="mono-val">$100,000,000</td>
-          </tr>
-          <tr>
-            <td>Proration</td>
-            <td>Yes — if oversubscribed, shares purchased pro rata</td>
-          </tr>
-          <tr>
-            <td>Offer commenced</td>
-            <td>February 26, 2026</td>
-          </tr>
-          <tr>
-            <td>Initial expiration</td>
-            <td>March 26, 2026 (11:59 p.m. ET)</td>
-          </tr>
-          <tr>
-            <td>Post-close ownership</td>
-            <td class="mono-val">~7% of shares outstanding</td>
-          </tr>
-          <tr>
-            <td>Condition</td>
-            <td>Conditioned on closing of IP joint venture</td>
-          </tr>
-          <tr>
-            <td>Filing</td>
-            <td>Schedule TO filed with SEC, February 26, 2026</td>
-          </tr>
+          <tr><td>Purchaser entity</td><td>LEWHP, LLC (indirect subsidiary of WH Topco, L.P., d/b/a WHP Global)</td></tr>
+          <tr><td>Target company</td><td>Lands' End, Inc. (NASDAQ: LE)</td></tr>
+          <tr><td>Offer price</td><td class="mono-val">$45.00 per share, cash</td></tr>
+          <tr><td>Maximum shares</td><td class="mono-val">2,222,222 shares</td></tr>
+          <tr><td>Maximum aggregate</td><td class="mono-val">$100,000,000</td></tr>
+          <tr><td>Proration</td><td>Yes. If oversubscribed, shares purchased pro rata across all tendering holders</td></tr>
+          <tr><td>Offer commenced</td><td>February 26, 2026</td></tr>
+          <tr><td>Extended expiration</td><td>March 31, 2026, per SC TO-T/A filed March 18, 2026</td></tr>
+          <tr><td>Post-close ownership</td><td class="mono-val">~7% of shares outstanding</td></tr>
+          <tr><td>Condition</td><td>Conditioned on concurrent closing of IP joint venture</td></tr>
+          <tr><td>Filing</td><td>Schedule TO filed with SEC, February 26, 2026; amended March 18, 2026</td></tr>
         </table>
       </div>
-
       <div>
-        <p style="font-size:12px; color: var(--whp-mid); letter-spacing:0.1em; text-transform:uppercase; font-weight:500; margin-bottom:0.75rem;">How a Shareholder Participates</p>
+        <p class="section-sub-label">How a Shareholder Participates</p>
         <ul class="process-list">
           <li><span class="process-num">01</span>Shareholders review the offer to purchase and related Tender Offer Materials filed on Schedule TO with the SEC.</li>
-          <li><span class="process-num">02</span>Shareholders who wish to tender submit shares through their broker or directly via the depositary in accordance with procedures described in the letter of transmittal.</li>
+          <li><span class="process-num">02</span>Shareholders wishing to tender submit shares through their broker-dealer or directly via Computershare Trust Company, N.A., the depositary, in accordance with the letter of transmittal procedures.</li>
           <li><span class="process-num">03</span>Shares must be validly tendered and not withdrawn prior to the expiration time to be eligible for the $45.00 offer price.</li>
-          <li><span class="process-num">04</span>If total shares tendered exceed 2,222,222, all tendering shareholders have their accepted quantity reduced pro rata — meaning each tendering holder receives a proportionate fraction of their tendered shares purchased at $45.00.</li>
-          <li><span class="process-num">05</span>Unpurchased shares (those subject to proration reduction) are returned to shareholders after the offer closes.</li>
-          <li><span class="process-num">06</span>The offer does not close unless the IP joint venture transaction also closes. The two components are conditioned on each other.</li>
+          <li><span class="process-num">04</span>If total shares tendered exceed 2,222,222, all tendering shareholders have their accepted quantity reduced on a pro rata basis. Each tendering holder receives a proportionate fraction of their submitted shares purchased at $45.00.</li>
+          <li><span class="process-num">05</span>Shares not purchased as a result of proration are returned to shareholders following the offer closing.</li>
+          <li><span class="process-num">06</span>The tender offer will not close unless the IP joint venture transaction closes concurrently. The two components are cross-conditioned.</li>
         </ul>
-
-        <div class="callout-box" style="margin-top:2rem;">
-          <p>The $45.00 offer price represents a <span>premium above analyst consensus</span> price targets of approximately $35 at the time of announcement — a meaningful incentive for shareholders to tender.</p>
+        <div class="callout-box" style="margin-top:1.5rem;">
+          <p>The $45.00 offer price represented a premium to analyst consensus price targets of approximately $35 at the time of announcement, providing a substantial economic incentive for shareholders to tender into the offer.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DISCLAIMER -->
 <div id="disclaimer">
   <div class="disclaimer-inner">
-    <div class="disclaimer-label">Disclaimer</div>
+    <span class="disclaimer-label">Disclaimer</span>
     <div>
       <p class="disclaimer-text">This website was created and authored by Ted Nawrocki and is intended solely for educational and informational purposes. Nothing contained herein constitutes financial, investment, legal, or professional advice of any kind. Readers should not rely on any content herein for investment decisions or any other purpose requiring professional judgment.</p>
       <p class="disclaimer-text">This analysis reflects the personal views and opinions of Ted Nawrocki only and is not affiliated with, endorsed by, or representative of any employer, institution, or organization with which Ted Nawrocki is or has been associated. This content does not represent the views of any employer, client, or affiliated entity.</p>
@@ -1301,7 +517,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <span class="footer-brand">Ted Nawrocki &nbsp;·&nbsp; Educational Analysis &nbsp;·&nbsp; March 2026</span>
   <a href="https://www.linkedin.com/in/tednawrockinyc/" class="footer-link" target="_blank">LinkedIn: tednawrockinyc ↗</a>
